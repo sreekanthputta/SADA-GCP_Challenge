@@ -1,3 +1,5 @@
+
+
 from minio import Minio
 from minio.error import S3Error
 from hashlib import sha256
@@ -8,8 +10,7 @@ import os
 
 
 
-
-#Connection to Minio Server
+#Connection to my Minio Server which I installed in GCP
 client = Minio(
     "35.202.171.168:9000",
     access_key="minioadmin",
@@ -21,13 +22,13 @@ client = Minio(
 found = client.bucket_exists("loomings")
 if not found:
     client.make_bucket("loomings")
+    print("Successfully created bucket 'loomings'")
 else:
     print("Bucket 'loomings' already exists")
     
 #Push loomings.txt fileto bucket
 client.fput_object("loomings", "loomings.txt", 'loomings.txt')
 print("'loomings.txt' is successfully uploaded as object 'loomings.txt' to bucket 'loomings'.")
-
 
 
 
@@ -54,7 +55,6 @@ with open('loomings.txt', 'r',encoding='utf-8') as loomings:
 
 #Printing the numbe of non blank lines using the counter variable fileCount
 print("\nTotal number of Non blank lines : ", str(fileCount))
-
 
 
 
@@ -89,7 +89,7 @@ for file in client.list_objects('loomings'):
         fileInfo = client.fget_object('loomings', fileName, fileName)
         hash = fileInfo.metadata['x-amz-meta-content-hash']
         os.remove(fileName)
-        hashFilesMap[hash].append(fileName)
+        hashFilesMap[hash].insert(0,fileName)
     
 #If there are multiple files with the same hash, then they are duplicates. So just keep one of them. 
 for files in hashFilesMap.values():
