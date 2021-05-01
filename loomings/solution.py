@@ -12,9 +12,9 @@ import os
 
 #Connection to my Minio Server which I installed in GCP
 client = Minio(
-    "35.202.171.168:9000",
-    access_key="minioadmin",
-    secret_key="minioadmin",
+    "s3.amazonaws.com",
+    access_key="AKIATRJCUENINOARO4OC",
+    secret_key="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",
     secure=False
 )
 
@@ -115,8 +115,8 @@ with open('loomings.txt', 'r',encoding='utf-8') as loomings:
         for i, line in enumerate(lines):
             if(len(line.strip())>0):
                 j += 1
-                if(j not in deleteLines):
+                if(str(j) not in deleteLines):
                     clean.write(str(line))
                     if(i!=len(lines)-1): clean.write("\n")
-print("'loomings-clean.txt' has been generated with unique statements")
-
+client.fput_object("loomings", "loomings-clean.txt", 'loomings-clean.txt')
+print("'loomings-clean.txt' has been generated with unique statements and uploaded to bucket 'loomings'")

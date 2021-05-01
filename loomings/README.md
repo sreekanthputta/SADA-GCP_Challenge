@@ -4,15 +4,15 @@ I have started this challenge by installing the Minio server on a GCP Compute En
 
 The server can be accessed with the following URL and creds.
 
-**URL**        - http://35.202.171.168:9000/
+**URL**        - s3.amazonaws.com
 
-**Accesskey**  - minioadmin
+**Accesskey**  - AKIATRJCUENINOARO4OC
 
-**Secretkey**  - minioadmin
+**Secretkey**  - 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
 
 I have utilized Python API of Minio to create the bucket, upload and create files, access files, using this API from the code.
 
-Note: I will be running my Minio Server on the Compute Engine in order for you to test. Please feel free to ping me on my email (putta.sreekanth1@gmail.com), if you are unable to access the Minio server.
+Note: ~~I will be running my Minio Server on the Compute Engine in order for you to test. Please feel free to ping me on my email (putta.sreekanth1@gmail.com), if you are unable to access the Minio server.~~ I have replaced the Minio service with AWS S3 service for the submission as the Compute Engine is expensive. You can test my work anytime now.
 
 # Instructions to run the code
 
@@ -22,7 +22,7 @@ I have run my solution using python. If it doesn't work, please feel free to cha
 
 # Input
 
-The code requires a data input which is 'loomings.txt' in the working directory. It also requires the Minio Server's URL, access key and secret key, which are provided above.
+The code requires a data input which is 'loomings.txt' in the working directory. It also requires the S3 Server's URL, access key and secret key, which are provided above.
 
 # Output
 
@@ -80,5 +80,5 @@ File-8, File-15 have the same hash digest.
 The original text line of File-8:  No, when I go to sea, I go as a simple sailor, right before the mast, plumb down into the forecastle, aloft there to the royal mast-head. True, they rather order me about some, and make me jump from spar to spar, like a grasshopper in a May meadow. And at first, this sort of thing is unpleasant enough. It touches one’s sense of honor, particularly if you come of an old established family in the land, the Van Rensselaers, or Randolphs, or Hardicanutes. And more than all, if just previous to putting your hand into the tar-pot, you have been lording it as a country schoolmaster, making the tallest boys stand in awe of you. The transition is a keen one, I assure you, from a schoolmaster to a sailor, and requires a strong decoction of Seneca and the Stoics to enable you to grin and bear it. But even this wears off in time.
 
 Lines 15 will be removed from 'loomings.txt' as they are duplicates.
-'loomings-clean.txt' has been generated with unique statements
+'loomings-clean.txt' has been generated with unique statements and uploaded to bucket 'loomings'
 ```
